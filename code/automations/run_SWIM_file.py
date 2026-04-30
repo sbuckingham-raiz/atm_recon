@@ -146,7 +146,7 @@ def build_data(test_flag:bool, dates:list[datetime], test_device_names:list[str]
         device_amounts_df = pd.concat(device_amounts_df)
     else:
         logger.info(f'No data to write...')
-        return
+        return pd.DataFrame(), pd.DataFrame(), pd.DataFrame(), pd.DataFrame()
 
     if len(delta_df) > 0:
         delta_df = pd.concat(delta_df)
@@ -180,7 +180,6 @@ def build_data(test_flag:bool, dates:list[datetime], test_device_names:list[str]
     # df = pd.concat([df, delta_df], axis=0)
     
     return [df.drop_duplicates(), delta_df.drop_duplicates(), atm_locations_df.drop_duplicates(), atm_owners_df.drop_duplicates()]
-
 
 def final_swim_file(df: pd.DataFrame):
     if not df.empty:
@@ -265,7 +264,7 @@ def send_outage_emails(delta_df:pd.DataFrame, atm_locations_df:pd.DataFrame, atm
         logger.info(f'Completed sending delta emails...')
     else:
         html_message = f'''
-        Good morning,<br><br>
+        Good afternoon,<br><br>
         No outages in all ATMs. Thank you.
         '''
         # html_content = template.render(data = all_data)
