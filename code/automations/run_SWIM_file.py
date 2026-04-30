@@ -196,7 +196,7 @@ def final_swim_file(df: pd.DataFrame):
             dnaupload_filename = build_swim_filename(date=datetime.today(), number=filenumber, target_dir=DNAUPLOAD_PATH)
 
         build_swim_file(data=data, filename=filename)
-        # shutil.copy(filename, dnaupload_filename)
+        shutil.copy(filename, dnaupload_filename)
         logger.info(f'Completed building of SWIM file. File is located at: {filename}')
         dbcon = build_postgres_connection_string(username=DBUSERNAME, password=DBPASSWORD, host=DBHOST, database=DBDATABASE, port=DBPORT)
         df.to_sql('swim_event', dbcon, if_exists='append')
