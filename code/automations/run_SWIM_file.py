@@ -222,7 +222,7 @@ def send_outage_emails(delta_df:pd.DataFrame, atm_locations_df:pd.DataFrame, atm
         email_df = email_df[['date', 'amount', 'device_name', 'branch']]
         email_df = email_df.rename(columns={i:i.upper() for i in email_df.columns})
         html_message = f'''
-        Good morning,<br><br>
+        Good afternoon,<br><br>
         This email is to inform you that your branch has an outage in the below ATMs.
         <br><br><br><br><br><br>
         {email_df.to_html(index = False)}
@@ -263,7 +263,44 @@ def send_outage_emails(delta_df:pd.DataFrame, atm_locations_df:pd.DataFrame, atm
         message.send()
             
         logger.info(f'Completed sending delta emails...')
+    else:
+        html_message = f'''
+        Good morning,<br><br>
+        No outages in all ATMs. Thank you.
+        '''
+        # html_content = template.render(data = all_data)
+        all_emails = [
+            'accounting@raiz.us', 
+            'BusinessIntelligence@raiz.us',
+            'blcupp@raiz.us'
+                    #   , 'cardservices@raiz.us', 'hubsupport@raiz.us'
+                      ]
         
+        
+
+        credentials = Credentials(username = os.getenv('EMAIL_USERNAME'), password = os.getenv('EMAIL_PASSWORD'))
+        servername = 'mail.tfcu.coop'
+        config = Configuration(
+            server = servername,
+            credentials = credentials
+        )
+        account = Account(
+            primary_smtp_address='business_intelligence@raiz.us',
+            credentials=credentials,
+            config=config,
+            access_type=DELEGATE 
+        )
+        subject = f'ATM Outages (All) - {today.strftime("%Y-%m-%d")}'
+        
+        message = Message(
+            account=account,
+            subject=subject,
+            body=HTMLBody(html_message),
+            to_recipients=all_emails
+            )
+        message.send()
+            
+        logger.info(f'Completed sending delta emails...')
 
 
 
