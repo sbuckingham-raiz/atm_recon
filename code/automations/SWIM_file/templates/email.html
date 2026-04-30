@@ -1,0 +1,10 @@
+Good morning,
+This email is to inform you that your branch has an outage in the below ATMs.
+
+    Date      |     ATM    | Amount
+    {% for record in data %}
+    {{record["date"].strftime('%Y-%m-%d')}} | {{record["device_name"]}} | {{record["amount"]}}
+    {% endfor %}
+
+If you have any questions or need further assistance, feel free to contact the Business Intelligence Team or the Accounting Team.
+

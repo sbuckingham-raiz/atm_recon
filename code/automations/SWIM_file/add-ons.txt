@@ -1,0 +1,24 @@
+Stuff to do:
+
+	Diana needs write access to automation files
+	
+	Email needs to be sent out to owner of ATM. Send separate email to [ accounting@raiz.us, cardservices@raiz.us ] of all ATM deltas.
+		Good morning,
+		This email is to inform you that your branch has a delta in the below ATMs for 1/22/25.
+
+		ATM TX004009-ESS - Delta  $615 
+
+		If you have any questions or need further assistance, feel free to contact the Business Intelligence Team or the Business Process Solutions Team.
+
+	Post delta to Delta GL (100020122535, test out without a cashbox number to see if there is an error tomorrow)
+
+	Post yesterday's delta to the Delta GL to check if there are any errors. 
+		Test below and check tomorrow if it is right
+			If its positive, GLD
+			If its negative, GLR
+		Description 
+			Auto. Delta -**device_name**-**date**-**branch**-**GLR/GLD**
+			Example:
+				Auto. Delta-TX004009-1/22/25-GoldenKey-GLD
+
+	

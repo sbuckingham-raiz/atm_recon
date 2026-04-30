@@ -1,0 +1,29 @@
+Marketing Meeting:
+
+	Automation:
+		CDFI Automation
+	
+	Self-Service BI:
+		Metrics (KPIs):
+			Age
+			Generation
+			Race ( infer race )
+			Zip Code
+			Product ( Minor codes )
+			Product Minor Code
+			Share of wallet 
+			PFI ( Marketing, Michael, Industry Standard has to be in the room )
+			Debit Card
+			Debit Card Transactions
+			Avg. Deposit Balance
+			Avg. Loan Balance
+			Income
+			Employment ( Industry )
+			Direct Deposit ( APS would help us define it, Atomic would help define )
+									
+									
+	Projects:	
+		Website analytics (DPUX analytics)
+		
+			
+		
