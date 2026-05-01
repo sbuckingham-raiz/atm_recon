@@ -74,10 +74,13 @@ def load_ncr_files():
     for root, _, files in os.walk(NCR_SOURCE_DIRECTORY):
         for file in files:
             filename = os.path.join(root, file)
-            if filename.endswith('.csv'):
-                if filename.startswith('GlobalMachinesSummary'):
-                    sourcefiles.append(filename)
+            file_base_name = os.path.basename(filename)
             
+            if file_base_name.endswith('.csv'):
+                if file_base_name.startswith('Global Machines Summary (with ATM)'):
+                    sourcefiles.append(filename)
+    
+    logger.info(f'Loading {len(sourcefiles)} files...')
     successful = 0
     filesTried = 0
     for file in sourcefiles:
@@ -87,6 +90,7 @@ def load_ncr_files():
                 dates_loaded = []
             
             total_df, amount_df, start_end_df = transform_ncr_file(file, dates_loaded)
+            
             successful+=1
             
             if successful == 1:
@@ -108,7 +112,8 @@ def load_ncr_files():
             
         except Exception as e:
             logger.error(f'Error running program for file: {file}\n{e}')
-            
+    logger.info(f'Successfully loaded {successful} files...')
+    
 @log_decorator_args(function_type='pipeline')    
 def setup():
     env_path = './pipelines/.env'

@@ -133,9 +133,11 @@ def test_time(line:list[str])->bool:
     if 'PM' not in start_timeofday or 'PM' not in end_timeofday :
         raise WrongDateError('End of time day is not PM for the file...')
     
-    if start_time != '6:30:00' or end_time != '6:30:00':
-        raise WrongDateError('Time is not 6:30 for the file...')
-        
+    if start_time.split(':')[0] != '6' or end_time.split(':')[0] != '6':
+        raise WrongDateError('Hour is not 6 for the file...')
+
+    if start_time.split(':')[1] != '30' or end_time.split(':')[1] != '30':
+        raise WrongDateError('Minute is not 30 for the file...')        
         
     
     try:
