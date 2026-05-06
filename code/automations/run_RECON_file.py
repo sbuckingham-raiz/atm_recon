@@ -50,7 +50,7 @@ def setup():
 def run_RECON_file():
     setup()
     logger.info('Starting RECON File automation...')
-    pickDate = datetime.datetime.today() - datetime.timedelta(1)
+    pickDate = datetime.datetime.today()
     branchATMdf = get_sql_table('atm_locations')
     branches = branchATMdf['branch'].unique()
     year = pickDate.year

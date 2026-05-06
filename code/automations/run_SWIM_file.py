@@ -97,7 +97,7 @@ def get_dates(past_days_check:int = 7):
         Gets all dates that were posted, and ensures that every day in the past week was posted. If not, add it to dates to be processed. 
         Also adds all dates between yesterday and the max date posted already
     '''
-    yesterday = datetime.today().date() - timedelta(days=1)
+    yesterday = datetime.today().date()
     day_check = []
     for x in range(past_days_check):
         day_check.append( yesterday - timedelta(days=x + 1) )
